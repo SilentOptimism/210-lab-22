@@ -236,8 +236,6 @@ int main() {
     list.print();
     cout << endl;
 
-
-
     cout << "Using .pop_back()" << endl;
     list.pop_back();
     cout << "List forward: ";
