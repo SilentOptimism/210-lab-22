@@ -209,15 +209,10 @@ int main() {
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
     for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+        list.push_back(i);
 
 
-    cout << "List forward: ";
-    list.print();
-    cout << endl;
-
-    cout << "Deleting head node with .delete_pos()" << endl;
-    list.delete_pos(0);
+    cout << "Initial List" << endl;
     cout << "List forward: ";
     list.print();
     cout << endl;
@@ -228,11 +223,19 @@ int main() {
     list.print();
     cout << endl;
 
-    cout << "Deleting node at 5th index with .delete_pos()" << endl;
+    cout << "Deleting 5th index node with .delete_pos()" << endl;
     list.delete_pos(5);
     cout << "List forward: ";
     list.print();
     cout << endl;
+
+    cout << "Deleting head node with .delete_pos()" << endl;
+    list.delete_pos(0);
+    cout << "List forward: ";
+    list.print();
+    cout << endl;
+
+
 
     cout << "Using .pop_back()" << endl;
     list.pop_back();
@@ -246,8 +249,15 @@ int main() {
     list.print();
     cout << endl;
 
-    list.pop_back();
-    list.pop_front();
+    cout << "Using invalid inputs" << endl;
+    cout << "\nUsing a negative index of (-1) for .delete_pos()" << endl;
+    list.delete_pos(-1);
+    cout << "\nUsing an index thats out of bounds for .delete_pos()" << endl;
+    list.delete_pos(size);
+
+
+
+
 
 
 
