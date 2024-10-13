@@ -23,6 +23,7 @@ public:
     // constructor
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    /// @brief Deletes the node at the head
     void pop_front(){
         if(!head){
             cout << "Empty list" << endl;
@@ -31,11 +32,12 @@ public:
 
         Node* remove = head;
         head = head->next;
-        head->prev = nullptr;
+        head->prev = nullptr; 
 
         delete remove;
     }
 
+    /// @brief Deletes the node at the tail
     void pop_back(){
         if(!tail){
             cout << "Empty list" << endl;
@@ -212,12 +214,42 @@ int main() {
 
     cout << "List forward: ";
     list.print();
+    cout << endl;
 
-    list.delete_pos(13);
+    cout << "Deleting head node with .delete_pos()" << endl;
     list.delete_pos(0);
-
     cout << "List forward: ";
     list.print();
+    cout << endl;
+
+    cout << "Deleting tail node with .delete_pos()" << endl;
+    list.delete_pos(size-1);
+    cout << "List forward: ";
+    list.print();
+    cout << endl;
+
+    cout << "Deleting node at 5th index with .delete_pos()" << endl;
+    list.delete_pos(5);
+    cout << "List forward: ";
+    list.print();
+    cout << endl;
+
+    cout << "Using .pop_back()" << endl;
+    list.pop_back();
+    cout << "List forward: ";
+    list.print();
+    cout << endl;
+
+    cout << "Using .pop_front()" << endl;
+    list.pop_front();
+    cout << "List forward: ";
+    list.print();
+    cout << endl;
+
+    list.pop_back();
+    list.pop_front();
+
+
 
 /*
     cout << "List backward: ";
