@@ -146,7 +146,6 @@ public:
             tail->next = nullptr; 
         } 
         
-
         delete(current);
         current = nullptr;
     }
@@ -211,7 +210,6 @@ int main() {
 
     for (int i = 0; i < size; ++i)
         list.push_back(i);
-
 
     cout << "Initial List" << endl;
     cout << "List forward: ";
