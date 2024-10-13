@@ -78,27 +78,34 @@ public:
 
     
     void delete_pos(int index){
-        Node* current = head;
-
+        // Valid index check
+        if (index < 0){
+            cout << "Index must be greater than or equal to 0" << endl;
+        }
+        // Checks if the list is empty
         if(!head){
             cout << "Empty list" << endl;
             return;
         }
 
-        for (int i = 0; i < index; i++)
-        {
+        Node* current = head;
+
+        // Iterates through list and checks to see if the index is out of bounds
+        for (int i = 0; i < index; i++){
             current = current->next;
+
             if(!current){
-                
+                cout << "Out of bounds: Index greater than list size" << endl;
                 return;
             }
         }
-        
-        
 
+        if(!(current == head)) {current->prev->next = current->next;} // Redirects the previous node to the next node
+        else {head = head->next;} // Redirects the head instead of the previous node as there is no previous node
 
-        current->prev->next = current->next;
-        current->next->prev = current->prev;
+        if(!(current == tail))  {current->next->prev = current->prev;} // Redirects the next node to the previous node
+        else {tail = tail->prev;} // Redirects the tail instead of the next node as there is no next node
+        
 
         delete(current);
         current = nullptr;
@@ -164,9 +171,17 @@ int main() {
 
     for (int i = 0; i < size; ++i)
         list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+
+
     cout << "List forward: ";
     list.print();
 
+    list.delete_pos(7);
+
+    cout << "List forward: ";
+    list.print();
+
+/*
     cout << "List backward: ";
     list.print_reverse();
 
@@ -175,5 +190,6 @@ int main() {
     cout << "List forward: ";
     list.print();
 
+*/
     return 0;
 }
