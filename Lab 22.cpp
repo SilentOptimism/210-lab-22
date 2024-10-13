@@ -1,3 +1,4 @@
+// COMSC-210 | Lab 22 | Expanded Doubly Linked List
 #include <iostream>
 using namespace std;
 
@@ -255,21 +256,5 @@ int main() {
     cout << "\nUsing an index thats out of bounds for .delete_pos()" << endl;
     list.delete_pos(size);
 
-
-
-
-
-
-
-/*
-    cout << "List backward: ";
-    list.print_reverse();
-
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
-    list.print();
-
-*/
     return 0;
 }
