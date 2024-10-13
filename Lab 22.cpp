@@ -23,6 +23,32 @@ public:
     // constructor
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    void pop_front(){
+        if(!head){
+            cout << "Empty list" << endl;
+            return;
+        }
+
+        Node* remove = head;
+        head = head->next;
+        head->prev = nullptr;
+
+        delete remove;
+    }
+
+    void pop_back(){
+        if(!tail){
+            cout << "Empty list" << endl;
+            return;
+        }
+
+        Node* remove = tail;
+        tail = tail->prev;
+        tail->next = nullptr;
+
+        delete remove;
+    }
+
     void push_back(int value) {
         Node* newNode = new Node(value);
         if (!tail)  // if there's no tail, the list is empty
@@ -76,7 +102,8 @@ public:
         temp->next = newNode;
     }
 
-    
+    /// @brief Deletes the node at the given index
+    /// @param index the index where the node will be deleted
     void delete_pos(int index){
         // Valid index check
         if (index < 0){
@@ -101,17 +128,27 @@ public:
         }
 
         if(!(current == head)) {current->prev->next = current->next;} // Redirects the previous node to the next node
-        else {head = head->next;} // Redirects the head instead of the previous node as there is no previous node
 
-        if(!(current == tail))  {current->next->prev = current->prev;} // Redirects the next node to the previous node
-        else {tail = tail->prev;} // Redirects the tail instead of the next node as there is no next node
+        // Redirects the head instead of the previous node as there is no previous node
+        else{
+            head = head->next;
+            head->prev = nullptr;
+        } 
+
+        if(!(current == tail)) {current->next->prev = current->prev;} // Redirects the next node to the previous node
+
+        // Redirects the tail instead of the next node as there is no next node
+        else{
+            tail = tail->prev;
+            tail->next = nullptr; 
+        } 
         
 
         delete(current);
         current = nullptr;
     }
 
-    void delete_node(int value) {
+    void delete_val(int value) {
         if (!head) return; // Empty list
 
         Node* temp = head;
@@ -176,7 +213,8 @@ int main() {
     cout << "List forward: ";
     list.print();
 
-    list.delete_pos(7);
+    list.delete_pos(13);
+    list.delete_pos(0);
 
     cout << "List forward: ";
     list.print();
